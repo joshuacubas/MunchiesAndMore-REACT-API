@@ -31,7 +31,6 @@ export default class LoginRegisterForm extends Component{
 	}
 	handleSubmit = (event) => {
 		event.preventDefault()
-		console.log(this.state)
 		if(this.state.action === "Register"){
 			this.props.register(this.state)
 		} else {

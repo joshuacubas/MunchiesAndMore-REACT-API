@@ -14,7 +14,7 @@ export default class App extends Component {
 		}
 	}
 	register = async (registerInfo) => {
-		console.log("register() called in app.js <=",registerInfo);
+		// console.log("register() called in app.js <=",registerInfo);
 		const url = process.env.REACT_APP_API_URL + "/api/v1/creators/register"
 		try{
 			const registerResponse = await fetch(url, {
@@ -25,9 +25,9 @@ export default class App extends Component {
 					'Content-Type':'application/json'
 				}
 			})
-			console.log('registerResponse',registerResponse)
+			// console.log('registerResponse',registerResponse)
 			const registerJson = await registerResponse.json()
-			console.log("registerJson",registerJson)
+			// console.log("registerJson",registerJson)
 
 			if(registerResponse.status === 201){
 				this.setState({
@@ -40,7 +40,7 @@ export default class App extends Component {
 		}
 	}
 	login = async (loginInfo) => {
-		console.log("login() called in app.js <=",loginInfo)
+		// console.log("login() called in app.js <=",loginInfo)
 		const url = process.env.REACT_APP_API_URL + '/api/v1/creators/login'
 		try{
 			const loginResponse = await fetch(url,{
@@ -51,9 +51,9 @@ export default class App extends Component {
 					'Content-Type': 'application/json'
 				}
 			})
-			console.log("loginResponse",loginResponse)
+			// console.log("loginResponse",loginResponse)
 			const loginJson = await loginResponse.json()
-			console.log("loginJson",loginJson)
+			// console.log("loginJson",loginJson)
 
 			if(loginResponse.status === 200){
 				this.setState({

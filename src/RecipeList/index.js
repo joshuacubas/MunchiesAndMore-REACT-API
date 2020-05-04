@@ -3,7 +3,7 @@ import {Item} from 'semantic-ui-react' // add ",Image" next to Item, later to ad
 import '../index.css';
 
 export default function RecipeList(props){
-	console.log('props.recipes',props.recipes)
+	// console.log('props.recipes',props.recipes)
 	const recipes = props.recipes.map(recipe => {
 		const image = recipe.image ? recipe.image : 'https://react.semantic-ui.com/images/wireframe/image.png' ;
 		return (
@@ -12,6 +12,7 @@ export default function RecipeList(props){
 				<Item.Content>
 					<Item.Header>{recipe.name}</Item.Header>
 					<Item.Meta>Posted by {recipe.creator.username}</Item.Meta>
+					
 					<Item.Description>
 						Vegan : {recipe.vegan ? '👍' : '👎'} 
 					</Item.Description>
