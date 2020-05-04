@@ -11,6 +11,7 @@ export default function RecipeList(props){
 				<Item.Image size='tiny' src={image} />
 				<Item.Content>
 					<Item.Header>{recipe.name}</Item.Header>
+					<Item.Meta>Posted by {recipe.creator.username}</Item.Meta>
 					<Item.Description>
 						Vegan : {recipe.vegan ? '👍' : '👎'} 
 					</Item.Description>
