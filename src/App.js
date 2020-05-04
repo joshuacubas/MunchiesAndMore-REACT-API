@@ -2,13 +2,14 @@ import React from 'react';
 
 import './App.css';
 
+import RecipeContainer from './RecipeContainer/index.js'
+
 function App() {
+	console.log(process.env)
   return (
-    <div className="App">
-      <header>
-        <h1>Munchies and More</h1>
-        <h5>Project 3</h5>
-      </header>
+    <div>
+      <h1>Project 3</h1>
+      <RecipeContainer />
     </div>
   );
 }
