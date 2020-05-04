@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import RecipeList from '../RecipeList/index.js'
 
 export default class RecipeContainer extends Component{
 	constructor(props){
@@ -16,9 +17,10 @@ export default class RecipeContainer extends Component{
 		try {
 			const url = process.env.REACT_APP_API_URI + "/api/v1/recipes/"
 			const recipesResponse = await fetch(url)
-			console.log("recipesResponse promise", recipesResponse)
 			const recipesJson = await recipesResponse.json()
-			console.log("recipesJson",recipesJson)
+			this.setState({
+				recipes: recipesJson.data
+			})
 		} catch(err) {
 			console.error("error in get recipes",err)
 		}
@@ -27,7 +29,10 @@ export default class RecipeContainer extends Component{
 
 	render() {
 		return(
-			<h2>RecipeContainer</h2>
+			<React.Fragment>
+				<h2>RecipeContainer</h2>
+				<RecipeList recipes={this.state.recipes}/>
+			</React.Fragment>
 		)
 	}
 }
