@@ -28,6 +28,13 @@ export default class App extends Component {
 			console.log('registerResponse',registerResponse)
 			const registerJson = await registerResponse.json()
 			console.log("registerJson",registerJson)
+
+			if(registerResponse.status === 201){
+				this.setState({
+					loggedIn: true,
+					loggedInUsername: registerJson.data.username
+				})
+			}
 		} catch(err) {
 			console.error("error trying to register w/ api",err)
 		}
@@ -47,6 +54,13 @@ export default class App extends Component {
 			console.log("loginResponse",loginResponse)
 			const loginJson = await loginResponse.json()
 			console.log("loginJson",loginJson)
+
+			if(loginResponse.status === 200){
+				this.setState({
+					loggedIn: true,
+					loggedInUsername: loginJson.data.username
+				})
+			}
 		} catch(err){
 			console.error("error trying to login, app.js",err)
 		}

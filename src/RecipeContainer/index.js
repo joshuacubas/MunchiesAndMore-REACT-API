@@ -15,8 +15,10 @@ export default class RecipeContainer extends Component{
 
 	getRecipes = async () => {
 		try {
-			const url = process.env.REACT_APP_API_URI + "/api/v1/recipes/"
-			const recipesResponse = await fetch(url)
+			const url = process.env.REACT_APP_API_URL + "/api/v1/recipes/"
+			const recipesResponse = await fetch(url,{
+				credentials: 'include'
+			})
 			const recipesJson = await recipesResponse.json()
 			this.setState({
 				recipes: recipesJson.data
