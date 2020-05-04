@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-
 import './App.css';
-
 import RecipeContainer from './RecipeContainer/index.js'
+import LoginRegisterForm from './LoginRegisterForm'
+
+
 
 export default class App extends Component {
 	constructor() {
@@ -11,6 +12,45 @@ export default class App extends Component {
 			loggedIn:false,
 			loggedInUsername: '' 
 		}
+	}
+	register = async (registerInfo) => {
+		console.log("register() called in app.js <=",registerInfo);
+		const url = process.env.REACT_APP_API_URL + "/api/v1/creators/register"
+		try{
+			const registerResponse = await fetch(url, {
+				credentials:'include',
+				method: 'POST',
+				body: JSON.stringify(registerInfo),
+				headers: {
+					'Content-Type':'application/json'
+				}
+			})
+			console.log('registerResponse',registerResponse)
+			const registerJson = await registerResponse.json()
+			console.log("registerJson",registerJson)
+		} catch(err) {
+			console.error("error trying to register w/ api",err)
+		}
+	}
+	login = async (loginInfo) => {
+		console.log("login() called in app.js <=",loginInfo)
+		const url = process.env.REACT_APP_API_URL + '/api/v1/creators/login'
+		try{
+			const loginResponse = await fetch(url,{
+				credentials: 'include',
+				method: 'POST',
+				body: JSON.stringify(loginInfo),
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			})
+			console.log("loginResponse",loginResponse)
+			const loginJson = await loginResponse.json()
+			console.log("loginJson",loginJson)
+		} catch(err){
+			console.error("error trying to login, app.js",err)
+		}
+
 	}
 	render() {
 		return(
@@ -25,7 +65,10 @@ export default class App extends Component {
 					?
 					<RecipeContainer />
 					:
-					<h3>Not logged in. Please Log in or Register.</h3>
+					<LoginRegisterForm 
+						login={this.login}
+						register={this.register}
+					/>
 				}
 			</div>
 		);

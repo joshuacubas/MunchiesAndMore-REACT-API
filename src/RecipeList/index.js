@@ -1,6 +1,6 @@
 import React from 'react'
 import {Item} from 'semantic-ui-react' // add ",Image" next to Item, later to add images
-import './index.css';
+import '../index.css';
 
 export default function RecipeList(props){
 	console.log('props.recipes',props.recipes)

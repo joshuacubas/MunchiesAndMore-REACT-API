@@ -11,3 +11,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.fake-link {
+  cursor: pointer;
+  color: blue;
+  text-decoration: underline;
+}
+.RecipeList-Item {
+	border: solid black 3px;
+	border-radius: 10px;
+}
