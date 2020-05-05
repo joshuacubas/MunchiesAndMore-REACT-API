@@ -30,8 +30,24 @@ export default class RecipeContainer extends Component{
 
 	}
 
-	createRecipe = (recipeToAdd) => {
-		console.log("recipe rting to get added : ",recipeToAdd)
+	createRecipe = async (recipeToAdd) => {
+		console.log("createRecipe(), recipe to get added : ",recipeToAdd)
+		try{
+			const url = process.env.REACT_APP_API_URL + "/api/v1/recipes/add"
+			const createRecipeResponse = await fetch(url,{
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(recipeToAdd)
+			})			
+			console.log("createRecipeResponse", createRecipeResponse)
+			const createRecipeJson = await createRecipeResponse.json()
+			console.log("createRecipeJson that we get back after trying to create a recipe",createRecipeJson)
+		} catch(err) {
+			console.log("error adding recipe -->createRecipe()",err)
+		}
+
 	}
 
 	render() {

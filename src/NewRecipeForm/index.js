@@ -9,7 +9,7 @@ export default class NewRecipeForm extends Component {
 			ingredients: '',
 			directions: '',
 			vegan: false,
-			gluten_free: '',
+			gluten_free: false,
 		}
 	}
 
