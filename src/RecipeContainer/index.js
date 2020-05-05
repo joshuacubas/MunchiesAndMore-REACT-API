@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import RecipeList from '../RecipeList/index.js'
+import NewRecipeForm from '../NewRecipeForm'
 
 export default class RecipeContainer extends Component{
 	constructor(props){
@@ -29,10 +30,15 @@ export default class RecipeContainer extends Component{
 
 	}
 
+	createRecipe = (recipeToAdd) => {
+		console.log("recipe rting to get added : ",recipeToAdd)
+	}
+
 	render() {
 		return(
 			<React.Fragment>
 				<h2>RecipeContainer</h2>
+				<NewRecipeForm createRecipe={this.createRecipe} />
 				<RecipeList recipes={this.state.recipes}/>
 			</React.Fragment>
 		)
