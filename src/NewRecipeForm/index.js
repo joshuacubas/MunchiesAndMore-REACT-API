@@ -77,7 +77,7 @@ export default class NewRecipeForm extends Component {
 						type="checkbox"
 						name='gluten_free'
 						value={this.state.gluten_free}
-						checked={this.state.gluten_free}
+						label="Check box if recipe is gluten-free"
 						onClick={this.handleClick}
 					/>
 
