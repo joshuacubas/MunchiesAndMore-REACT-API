@@ -35,6 +35,7 @@ export default class RecipeContainer extends Component{
 		try{
 			const url = process.env.REACT_APP_API_URL + "/api/v1/recipes/add"
 			const createRecipeResponse = await fetch(url,{
+				credentials: 'include',
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
