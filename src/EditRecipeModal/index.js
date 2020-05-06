@@ -18,7 +18,13 @@ export default class EditRecipeModal extends Component {
 			<Segment>
 				<h4>Edit recipe</h4>
 				<Form> 
-				
+					<Label>Name :</Label>
+					<Form.Input 
+						type="text"
+						name='name'
+						value={this.state.name}
+						placeholder="Enter recipe name"
+					/>
 					<Label>Ingredients :</Label>
 					<Form.Input 
 						type="text"
