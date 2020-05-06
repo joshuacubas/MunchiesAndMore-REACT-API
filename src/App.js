@@ -102,7 +102,7 @@ export default class App extends Component {
 					?
 					<React.Fragment>
 						<Header username={this.state.loggedInUsername} logout={this.logout}/>
-						<RecipeContainer />
+						<RecipeContainer username={this.state.loggedInUsername}/>
 					</React.Fragment>
 					:
 					<LoginRegisterForm 

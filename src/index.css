@@ -19,6 +19,7 @@ code {
 .RecipeList-Item {
 	border: solid black 3px;
 	border-radius: 10px;
+  margin:200px 200px;
 }
 
 .booleans-div{
@@ -38,4 +39,8 @@ nav {
 p {
   display:flex;
   flex-direction: row
+}
+
+.NewRecipeForm {
+  background-color: lightyellow;
 }

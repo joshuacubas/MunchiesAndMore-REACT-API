@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import RecipeList from '../RecipeList/index.js'
 import NewRecipeForm from '../NewRecipeForm'
 import EditRecipeModal from '../EditRecipeModal/index.js'
+import '../index.css';
 
 export default class RecipeContainer extends Component{
 	constructor(props){
@@ -104,7 +105,7 @@ export default class RecipeContainer extends Component{
 			const updateRecipeJson = await updateRecipeResponse.json()
 			console.log("updateRecipeJson",updateRecipeJson) 
 
-			if(updateRecipeResponse === 200){
+			if(updateRecipeResponse.status === 200){
 				const recipes =this.state.recipes 
 				const indexOfRecipeBeingUpdated = recipes.findIndex(recipe => recipe.id === this.state.idOfRecipeToEdit)
 				recipes[indexOfRecipeBeingUpdated] = updateRecipeJson.data
@@ -127,17 +128,21 @@ export default class RecipeContainer extends Component{
 	}
 
 	render() {
+
+		const addRecipeForm = {
+			backgroundColor : '#FFFFE0',
+		}
+		const recipeToEdit = this.state.recipes.find((recipe) => recipe.id === this.state.idOfRecipeToEdit)
 		return(
 			<React.Fragment>
-				<h2>RecipeContainer</h2>
-				<NewRecipeForm createRecipe={this.createRecipe} />
+				<NewRecipeForm style={addRecipeForm} createRecipe={this.createRecipe} />
 				<RecipeList 
 					recipes={this.state.recipes} 
 					deleteRecipe={this.deleteRecipe}
 					editRecipe={this.editRecipe}
 				/>
 				{
-					this.state.idOfRecipeToEdit !== -1 
+					(this.state.idOfRecipeToEdit !== -1 && recipeToEdit.creator.username === this.props.username)
 					&& 
 					<EditRecipeModal 
 						recipeToEdit={this.state.recipes.find((recipe) => recipe.id === this.state.idOfRecipeToEdit)}
