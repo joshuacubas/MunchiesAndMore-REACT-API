@@ -1,12 +1,14 @@
 import React, {Component} from 'react'
 import RecipeList from '../RecipeList/index.js'
 import NewRecipeForm from '../NewRecipeForm'
+import EditRecipeModal from '../EditRecipeModal/index.js'
 
 export default class RecipeContainer extends Component{
 	constructor(props){
 		super(props)
 		this.state={
 			recipes:[],
+			idOfRecipeToEdit: -1
 		}
 	}
 
@@ -73,11 +75,18 @@ export default class RecipeContainer extends Component{
 					recipes:[...this.state.recipes, createRecipeJson.data]
 				})
 			}
-			
+
 		} catch(err) {
 			console.log("error adding recipe -->createRecipe()",err)
 		}
 
+	}
+
+	editRecipe = (idOfRecipeToEdit)=> {
+		console.log("editRecipe(idOfRecipeToEdit) in RecipeContainer", idOfRecipeToEdit)
+		this.setState({
+			idOfRecipeToEdit: idOfRecipeToEdit
+		})
 	}
 
 	render() {
@@ -85,7 +94,12 @@ export default class RecipeContainer extends Component{
 			<React.Fragment>
 				<h2>RecipeContainer</h2>
 				<NewRecipeForm createRecipe={this.createRecipe} />
-				<RecipeList recipes={this.state.recipes} deleteRecipe={this.deleteRecipe}/>
+				<RecipeList 
+					recipes={this.state.recipes} 
+					deleteRecipe={this.deleteRecipe}
+					editRecipe={this.editRecipe}
+				/>
+				{this.state.idOfRecipeToEdit !== -1 && <EditRecipeModal />}
 			</React.Fragment>
 		)
 	}

@@ -15,12 +15,19 @@ export default function RecipeList(props){
 					<div className="booleans-div">
 						
 						<Item.Description className="booleans">
-							Vegan : {recipe.vegan ? '👍' : '👎'} 
+							Vegan : {recipe.vegan ? '✅' : '🚫'} 
 						</Item.Description>
 						<Item.Description className="booleans">
-							Gluten-free : {recipe.gluten_free ? '👍' : '👎'} 
+							Gluten-free : {recipe.gluten_free ? '✅' : '🚫'} 
 						</Item.Description>
 					</div>
+					<Button 
+						basic 
+						color='green'
+						onClick={() => props.editRecipe(recipe.id) }
+					>
+						Edit {recipe.name}
+					</Button>
 					<Button 
 						basic 
 						color='red'
