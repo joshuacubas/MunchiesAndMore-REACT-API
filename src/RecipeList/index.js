@@ -2,6 +2,7 @@ import React from 'react'
 import {Item,Button} from 'semantic-ui-react' // add ",Image" next to Item, later to add images
 import '../index.css';
 
+
 export default function RecipeList(props){
 	// console.log('props.recipes',props.recipes)
 	const recipes = props.recipes.map(recipe => {
@@ -35,6 +36,7 @@ export default function RecipeList(props){
 					>
 						Delete {recipe.name}
 					</Button>
+			
 				</Item.Content>
 			</Item>
 		)

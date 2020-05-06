@@ -50,6 +50,7 @@ export default class RecipeContainer extends Component{
 					dogs: this.state.recipes.filter(recipe=> recipe.id !== idOfRecipeToDelete)
 				})
 			}
+			this.getRecipes()
 		}catch(err){
 			console.error("error deleting redcipe id #{idOfRecipeToDelete}",err)
 		}
