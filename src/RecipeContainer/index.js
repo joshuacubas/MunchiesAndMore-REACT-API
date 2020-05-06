@@ -42,9 +42,16 @@ export default class RecipeContainer extends Component{
 				},
 				body: JSON.stringify(recipeToAdd)
 			})			
-			console.log("createRecipeResponse", createRecipeResponse)
+			
 			const createRecipeJson = await createRecipeResponse.json()
 			console.log("createRecipeJson that we get back after trying to create a recipe",createRecipeJson)
+
+			if(createRecipeResponse.status === 201){
+				this.setState({
+					recipes:[...this.state.recipes, createRecipeJson.data]
+				})
+			}
+
 		} catch(err) {
 			console.log("error adding recipe -->createRecipe()",err)
 		}

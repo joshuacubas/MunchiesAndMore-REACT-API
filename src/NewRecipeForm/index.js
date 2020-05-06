@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Form,Button,Label,Segment,Checkbox} from 'semantic-ui-react'
+import {Form,Button,Label,Segment} from 'semantic-ui-react'
 
 export default class NewRecipeForm extends Component {
 	constructor(props){
