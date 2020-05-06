@@ -99,7 +99,14 @@ export default class RecipeContainer extends Component{
 					deleteRecipe={this.deleteRecipe}
 					editRecipe={this.editRecipe}
 				/>
-				{this.state.idOfRecipeToEdit !== -1 && <EditRecipeModal />}
+				{
+					this.state.idOfRecipeToEdit !== -1 
+					&& 
+					<EditRecipeModal 
+						recipeToEdit={this.state.recipes.find((recipe) => recipe.id === this.state.idOfRecipeToEdit)}
+					/>
+
+				}
 			</React.Fragment>
 		)
 	}

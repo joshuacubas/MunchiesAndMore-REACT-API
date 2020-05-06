@@ -5,11 +5,11 @@ export default class EditRecipeModal extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			name: '',
-			ingredients: '',
-			directions: '',
-			vegan: false,
-			gluten_free: false,
+			name: props.recipeToEdit.name,
+			ingredients: props.recipeToEdit.ingredients,
+			directions: props.recipeToEdit.directions,
+			vegan: props.recipeToEdit.vegan,
+			gluten_free: props.recipeToEdit.gluten_free,
 		}
 	}
 
