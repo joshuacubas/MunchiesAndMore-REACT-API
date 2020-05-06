@@ -34,3 +34,8 @@ nav {
   flex-direction: row;
   justify-content: flex-end;
 }
+
+p {
+  display:flex;
+  flex-direction: row
+}
