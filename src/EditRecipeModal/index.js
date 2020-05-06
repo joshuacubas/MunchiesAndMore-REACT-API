@@ -13,17 +13,35 @@ export default class EditRecipeModal extends Component {
 		}
 	}
 
+	handleChange = (event) => {
+		this.setState({
+			[event.target.name]: event.target.value
+		})
+	}
+
+	handleClick = (event) => {
+		this.setState({
+			[event.target.name]: !this.state[event.target.name]
+		})
+	}
+
+	handleSubmit=(event)=>{
+		event.preventDefault()
+		this.props.updateRecipe(this.state)
+	}
+
 	render(){
 		return (
 			<Segment>
 				<h4>Edit recipe</h4>
-				<Form> 
+				<Form onSubmit={this.handleSubmit}> 
 					<Label>Name :</Label>
 					<Form.Input 
 						type="text"
 						name='name'
 						value={this.state.name}
 						placeholder="Enter recipe name"
+						onChange={this.handleChange}
 					/>
 					<Label>Ingredients :</Label>
 					<Form.Input 
@@ -31,6 +49,7 @@ export default class EditRecipeModal extends Component {
 						name='ingredients'
 						value={this.state.ingredients}
 						placeholder="Enter recipe ingredients"
+						onChange={this.handleChange}
 			
 					/>
 					<Label>Directions :</Label>
@@ -39,6 +58,7 @@ export default class EditRecipeModal extends Component {
 						name='directions'
 						value={this.state.directions}
 						placeholder="Enter recipe directions"
+						onChange={this.handleChange}
 				
 					/>
 					<Label>Vegan :</Label>
@@ -47,7 +67,9 @@ export default class EditRecipeModal extends Component {
 						name='vegan'
 						value={this.state.vegan}
 						label="Check box if recipe is vegan"
-				
+						onClick={this.handleClick}
+						checked={this.state.vegan}
+						
 					/>
 					<Label>Gluten-free :</Label>
 					<Form.Input 
@@ -55,6 +77,8 @@ export default class EditRecipeModal extends Component {
 						name='gluten_free'
 						value={this.state.gluten_free}
 						label="Check box if recipe is gluten-free"
+						onClick={this.handleClick}
+						checked={this.state.gluten_free}
 						
 					/>
 

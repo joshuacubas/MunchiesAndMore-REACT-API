@@ -89,6 +89,28 @@ export default class RecipeContainer extends Component{
 		})
 	}
 
+	updateRecipe = async (updatedRecipeInfo) => {
+		const url = process.env.REACT_APP_API_URL + "/api/v1/recipes/" + this.state.idOfRecipeToEdit
+		try{
+			const updateRecipeResponse = await fetch(url, {
+				credentials: 'include',
+				method: 'PUT',
+				body: JSON.stringify(updatedRecipeInfo),
+				headers: {
+					'Content-Type' : 'application/json'
+				},
+			})
+			console.log("updateRecipeResponse",updateRecipeResponse)
+			const updateRecipeJson = await updateRecipeResponse.json()
+			console.log("updateRecipeJson",updateRecipeJson) 
+
+			this.setState({idOfRecipeToEdit: -1})
+			this.getRecipes()
+		} catch(err) {
+			console.error("error updating recipe info",err)
+		}
+	}
+
 	render() {
 		return(
 			<React.Fragment>
@@ -104,6 +126,7 @@ export default class RecipeContainer extends Component{
 					&& 
 					<EditRecipeModal 
 						recipeToEdit={this.state.recipes.find((recipe) => recipe.id === this.state.idOfRecipeToEdit)}
+						updateRecipe={this.updateRecipe}
 					/>
 
 				}
