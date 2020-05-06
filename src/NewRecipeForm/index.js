@@ -26,6 +26,13 @@ export default class NewRecipeForm extends Component {
 	handleSubmit = (event) => {
 		event.preventDefault()
 		this.props.createRecipe(this.state)
+		this.setState({
+			name: '',
+			ingredients: '',
+			directions: '',
+			vegan: false,
+			gluten_free: false,
+		})
 	}
 
 	handleClick = (event) => {

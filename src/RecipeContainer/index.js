@@ -30,6 +30,28 @@ export default class RecipeContainer extends Component{
 
 	}
 
+	deleteRecipe = async (idOfRecipeToDelete) => {
+		const url = process.env.REACT_APP_API_URL + "/api/v1/recipes/" + idOfRecipeToDelete
+		try{
+			const deleteRecipeResponse = await fetch(url, {
+				credentials: 'include',
+				method: 'DELETE'
+			})
+
+			console.log("deleteRecipeResponse",deleteRecipeResponse)
+			const deleteRecipeJson = await deleteRecipeResponse.json()
+			console.log("deleteRecipeJson",deleteRecipeJson)
+
+			if(deleteRecipeResponse.status === 200){
+				this.setState({
+					dogs: this.state.recipes.filter(recipe=> recipe.id !== idOfRecipeToDelete)
+				})
+			}
+		}catch(err){
+			console.error("error deleting redcipe id #{idOfRecipeToDelete}",err)
+		}
+	} 
+
 	createRecipe = async (recipeToAdd) => {
 		console.log("createRecipe(), recipe to get added : ",recipeToAdd)
 		try{
@@ -51,7 +73,7 @@ export default class RecipeContainer extends Component{
 					recipes:[...this.state.recipes, createRecipeJson.data]
 				})
 			}
-
+			
 		} catch(err) {
 			console.log("error adding recipe -->createRecipe()",err)
 		}
@@ -63,7 +85,7 @@ export default class RecipeContainer extends Component{
 			<React.Fragment>
 				<h2>RecipeContainer</h2>
 				<NewRecipeForm createRecipe={this.createRecipe} />
-				<RecipeList recipes={this.state.recipes}/>
+				<RecipeList recipes={this.state.recipes} deleteRecipe={this.deleteRecipe}/>
 			</React.Fragment>
 		)
 	}

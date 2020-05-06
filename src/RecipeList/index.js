@@ -1,5 +1,5 @@
 import React from 'react'
-import {Item} from 'semantic-ui-react' // add ",Image" next to Item, later to add images
+import {Item,Button} from 'semantic-ui-react' // add ",Image" next to Item, later to add images
 import '../index.css';
 
 export default function RecipeList(props){
@@ -12,13 +12,22 @@ export default function RecipeList(props){
 				<Item.Content>
 					<Item.Header>{recipe.name}</Item.Header>
 					<Item.Meta>Posted by {recipe.creator.username}</Item.Meta>
-					
-					<Item.Description>
-						Vegan : {recipe.vegan ? '👍' : '👎'} 
-					</Item.Description>
-					<Item.Description>
-						Gluten-free : {recipe.gluten_free ? '👍' : '👎'} 
-					</Item.Description>
+					<div className="booleans-div">
+						
+						<Item.Description className="booleans">
+							Vegan : {recipe.vegan ? '👍' : '👎'} 
+						</Item.Description>
+						<Item.Description className="booleans">
+							Gluten-free : {recipe.gluten_free ? '👍' : '👎'} 
+						</Item.Description>
+					</div>
+					<Button 
+						basic 
+						color='red'
+						onClick={() => props.deleteRecipe(recipe.id) }
+					>
+						Delete {recipe.name}
+					</Button>
 				</Item.Content>
 			</Item>
 		)

@@ -20,3 +20,11 @@ code {
 	border: solid black 3px;
 	border-radius: 10px;
 }
+
+.booleans-div{
+  display:flex;
+}
+
+.booleans{
+  margin:0px 20px;
+}
