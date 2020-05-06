@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './App.css';
 import RecipeContainer from './RecipeContainer/index.js'
 import LoginRegisterForm from './LoginRegisterForm'
+import Header from './Header'
 
 
 
@@ -66,18 +67,43 @@ export default class App extends Component {
 		}
 
 	}
+
+	logout = async () => {
+		try {
+			const url = process.env.REACT_APP_API_URL + "/api/v1/creators/logout"
+			const logoutResponse = await fetch(url, {
+				credentials: 'include'
+			})
+			console.log("logoutResponse",logoutResponse)
+			const logoutJson = await logoutResponse.json()
+			console.log("logoutJson",logoutJson)
+
+			if(logoutResponse.status === 200){
+				this.setState({
+					loggedIn: false,
+					loggedInUsername: ''
+				})
+			}
+		}catch(err){
+			console.error("error logging out user",err)
+		}
+	}
+
 	render() {
 		return(
 			<div>
 				<div className="header-div">
 					<h1>Munchies and More!</h1>
 					<h3>A place to find and share your favorite recipes and tutorials</h3>
-					<p>Need a nav bar with login and user info too</p>
+					
 				</div>
 				{
 					this.state.loggedIn
 					?
-					<RecipeContainer />
+					<React.Fragment>
+						<Header logout={this.logout}/>
+						<RecipeContainer />
+					</React.Fragment>
 					:
 					<LoginRegisterForm 
 						login={this.login}

@@ -28,3 +28,9 @@ code {
 .booleans{
   margin:0px 20px;
 }
+
+nav {
+  display:flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
