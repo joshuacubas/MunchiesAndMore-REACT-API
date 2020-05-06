@@ -28,12 +28,19 @@ export default class EditRecipeModal extends Component {
 	handleSubmit=(event)=>{
 		event.preventDefault()
 		this.props.updateRecipe(this.state)
+		this.props.closeModal()
 	}
 
 	render(){
+		const linkStyle = {
+			cursor: "pointer",
+			color: "blue",
+			textDecoration: "underline"
+		}
 		return (
 			<Segment>
 				<h4>Edit recipe</h4>
+				<p style={linkStyle} onClick={this.props.closeModal}><small>Exit Edit Form</small></p>
 				<Form onSubmit={this.handleSubmit}> 
 					<Label>Name :</Label>
 					<Form.Input 

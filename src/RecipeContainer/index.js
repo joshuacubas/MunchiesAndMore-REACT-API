@@ -104,11 +104,26 @@ export default class RecipeContainer extends Component{
 			const updateRecipeJson = await updateRecipeResponse.json()
 			console.log("updateRecipeJson",updateRecipeJson) 
 
-			this.setState({idOfRecipeToEdit: -1})
-			this.getRecipes()
+			if(updateRecipeResponse === 200){
+				const recipes =this.state.recipes 
+				const indexOfRecipeBeingUpdated = recipes.findIndex(recipe => recipe.id === this.state.idOfRecipeToEdit)
+				recipes[indexOfRecipeBeingUpdated] = updateRecipeJson.data
+
+				this.setState({
+					idOfRecipeToEdit: -1,
+					recipes:recipes
+				})
+				this.getRecipes()
+			}
 		} catch(err) {
 			console.error("error updating recipe info",err)
 		}
+	}
+
+	closeModal = () => {
+		this.setState({
+			idOfRecipeToEdit: -1
+		})
 	}
 
 	render() {
@@ -127,6 +142,7 @@ export default class RecipeContainer extends Component{
 					<EditRecipeModal 
 						recipeToEdit={this.state.recipes.find((recipe) => recipe.id === this.state.idOfRecipeToEdit)}
 						updateRecipe={this.updateRecipe}
+						closeModal={this.closeModal}
 					/>
 
 				}
